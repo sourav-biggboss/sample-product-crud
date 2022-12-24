@@ -1,0 +1,12 @@
+<nav class="navbar navbar-light bg-light px-3">
+    
+    <a class="navbar-brand" [title]="appName | titlecase">
+        <!-- app logo nav -->
+      <img [src]="logoSrc" [width]="logoWidth" [height]="logoHeight" class="d-inline-block align-top" [alt]="appName | titlecase">
+      <span class="text-uppercase font-weight-bold">
+            <b>
+                {{appName | uppercase}} 
+            </b>
+      </span>
+    </a>
+</nav>

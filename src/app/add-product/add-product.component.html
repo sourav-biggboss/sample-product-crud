@@ -1,0 +1,62 @@
+
+      <form [formGroup]="productForm"  (ngSubmit)="onAddProduct()">
+        <h4>{{formName}}</h4>
+        <h6 class="text-danger" *ngIf="errorMsg">{{errorMsg}}</h6>
+        <h6 class="text-success" *ngIf="successMsg">{{successMsg|titlecase}}</h6>
+        <div class="form-group">
+          <label for="">Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="" name="name"  formControlName="name" required placeholder="Product Name">
+          <div *ngIf="productForm.controls.name.invalid && (productForm.controls.name.dirty || productForm.controls.name.touched)" class="text-danger">
+            <div *ngIf="productForm.controls.name.errors?.['required']">
+              Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="">Image <span class="text-danger">*</span></label>
+          <input type="file" class="form-control" id="" name="image"  formControlName="image" required placeholder="Product Image">
+          <div *ngIf="productForm.controls.image.invalid && (productForm.controls.image.dirty || productForm.controls.image.touched)" class="text-danger">
+            <div *ngIf="productForm.controls.image.errors?.['required']">
+              Image is required.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label for="">Price <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="" name="price" formControlName="price" required placeholder="Product Price">
+            <div *ngIf="productForm.controls.price.invalid && (productForm.controls.price.dirty || productForm.controls.price.touched)" class="text-danger">
+              <div *ngIf="productForm.controls.price.errors?.['required']">
+                Price is required.
+              </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Offer Price</label>
+            <input type="number" class="form-control" [max]="productForm.value.price ?? 0" id="" name="offerPrice" formControlName="offerPrice"  placeholder="Product Offer">
+            <div *ngIf="productForm.controls.offerPrice.invalid && (productForm.controls.offerPrice.dirty || productForm.controls.offerPrice.touched)" class="text-danger">
+              <div *ngIf="productForm.controls.offerPrice.errors?.['min']">
+                Offer Price should be minimum compare to product price.
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Color <span class="text-danger">*</span></label>
+            <!-- <input type="text" class="form-control" id="" name="color" formControlName="color" required placeholder="Product Color"> -->
+            <select class="form-control" id="" name="color" formControlName="color" required placeholder="Product Color">
+              <option value disabled>Select</option>
+              <option value="red">Red</option>
+              <option value="yellow">Yellow</option>
+              <option value="pink">Pink</option>
+              <option value="blue">Blue</option>
+            </select>
+            <div *ngIf="productForm.controls.color.invalid && (productForm.controls.color.dirty || productForm.controls.color.touched)" class="text-danger">
+              <div *ngIf="productForm.controls.color.errors?.['required']">
+                Color is required.
+              </div>
+            </div>
+        </div>
+          
+        <button type="submit" [disabled]="productForm.invalid && (productForm.dirty || productForm.touched)"  class="btn mt-2 btn-dark">{{ formBtnStr }}</button>
+        <button type="button" *ngIf="productId !=undefined " (click)="toggleAdd()" class="btn mt-2 btn-light">Add New Product</button>
+      </form>

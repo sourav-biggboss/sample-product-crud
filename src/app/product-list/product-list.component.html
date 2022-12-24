@@ -1,0 +1,25 @@
+<div class="card mb-6">
+    <img src="/assets/food-photography.jpg" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">{{product?.name ?? 'N/A'}}</h5>
+        <div class="card-text d-block"><b>Color: </b>
+            {{product?.color ?? 'N/A' | titlecase}}
+            <div style="height: 20px;width: 20px; display: inline-block;margin-bottom: -5px;" [style.backgroundColor]="product?.color">
+            </div>
+        </div>
+        <small>
+            <span>
+                <strong>Price:</strong>
+                {{product?.price ?? 'N/A'}}₹
+            </span> - 
+            <em><b>Discount</b>: {{product?.offerPrice ?? 'N/A'}}₹</em>
+        </small>
+        <br>
+        <div class="mb-3 text-success" style="font-size: 20px;">
+            <span><b>Total:</b> </span>{{this.productService.discountSub(product?.price,product?.offerPrice)}}₹
+        </div>
+        <a (click)="update()"  *ngIf="isLogin()" class="btn btn-light">Update / Edit</a>
+        <a (click)="delete()" *ngIf="isLogin()"  class="btn btn-danger">{{deleteText | titlecase}}</a>
+    </div>
+</div>
+<br>

@@ -1,0 +1,40 @@
+  
+  <form [formGroup]="signupForm" (submit)="onSignUp()">
+    <h4>Registration</h4>
+    <h6 class="text-danger" *ngIf="FormErr">Email Or Password Already Exist And password should we max 6</h6>
+    <h6 class="text-success" *ngIf="successSignup">Successfully Registered</h6>
+    <h6 class="text-danger" *ngIf="FormErrMessage && FormErrMessage.message">{{FormErrMessage.message}}</h6>
+    <h6 class="text-danger" *ngIf="signupForm.invalid && (signupForm.dirty || signupForm.touched)">Please enter all feilds</h6>
+    <div class="form-group">
+        <label for="name">Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" formControlName="name" placeholder="Full Name">
+        <div *ngIf="signupForm.controls.name.invalid && (signupForm.controls.name.dirty || signupForm.controls.name.touched)" class="text-danger">
+          <div *ngIf="signupForm.controls.name.errors?.['required']">
+            Name is required.
+          </div>
+        </div>
+    </div>
+    <div class="form-group">
+      <label for="">Email address <span class="text-danger">*</span></label>
+      <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp" placeholder="Enter email">
+      <div *ngIf="signupForm.controls.email.invalid && (signupForm.controls.email.dirty || signupForm.controls.email.touched)" class="text-danger">
+        <div *ngIf="signupForm.controls.email.errors?.['required']">
+          Email is required.
+        </div>
+      </div>
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="password">New Password <span class="text-danger">*</span></label>
+      <input type="password" class="form-control" formControlName="password" placeholder="Password">
+      <div *ngIf="signupForm.controls.password.invalid && (signupForm.controls.password.dirty || signupForm.controls.password.touched)" class="text-danger">
+        <div *ngIf="signupForm.controls.password.errors?.['required']">
+          Password is required.
+        </div>
+      </div>
+    </div>
+    <small>
+      <a class="d-block mt-2" (click)="toLogInView()">Click Here to Login</a>
+    </small>
+    <button type="submit" [disabled]="signupForm.invalid && (signupForm.dirty || signupForm.touched)"  class="btn mt-2 btn-dark">Register</button>
+  </form>

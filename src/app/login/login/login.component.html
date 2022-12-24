@@ -1,0 +1,32 @@
+
+      <form [formGroup]="loginForm"  (ngSubmit)="login()">
+        <h4>Login</h4>
+        <h6 class="text-danger" *ngIf="FormErrMessage && FormErrMessage.message">{{FormErrMessage.message}}</h6>
+        <h6 class="text-danger" *ngIf="loginForm.invalid && (loginForm.dirty || loginForm.touched)">Please enter email and password</h6>
+        <h6 class="text-danger" *ngIf="FormErr">Login Failed</h6>
+        <h6 class="text-success" *ngIf="successLogin">Login Successfully</h6>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address <span class="text-danger">*</span></label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"  formControlName="email" required placeholder="Enter email">
+          <div *ngIf="loginForm.controls.email.invalid && (loginForm.controls.email.dirty || loginForm.controls.email.touched)" class="text-danger">
+            <div *ngIf="loginForm.controls.email.errors?.['required']">
+              Email Price is required.
+            </div>
+          </div>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password <span class="text-danger">*</span></label>
+          <input type="password" class="form-control" id="exampleInputPassword1"  formControlName="password" required placeholder="Password">
+          <div *ngIf="loginForm.controls.password.invalid && (loginForm.controls.password.dirty || loginForm.controls.password.touched)" class="text-danger">
+            <div *ngIf="loginForm.controls.password.errors?.['required']">
+              Password Price is required.
+            </div>
+          </div>
+        </div>
+        <small>
+          <a class="d-block mt-2" (click)="toResgisterView()">Click Here to Register</a>
+        </small>
+          
+        <button type="submit" [disabled]="loginForm.invalid && (loginForm.dirty || loginForm.touched)" class="btn mt-2 btn-dark">{{LoginFormBtnStr }}</button>
+      </form>

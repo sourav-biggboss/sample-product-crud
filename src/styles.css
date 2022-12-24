@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.form-control {
+    border-radius: 0!important;
+} 
+.btn {
+    border-radius: 0!important;
+} 
+input.ng-dirty.ng-invalid {
+    border: 1px #dc3545 solid!important;
+}

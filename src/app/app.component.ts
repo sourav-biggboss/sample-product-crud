@@ -1,10 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth.service';
+import { AddProductFrom, AddProductInterface, ProductService } from './product.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'sample-product-crud';
+export class AppComponent implements OnInit{
+  title = 'Sample Product Crud';
+  isRegisterView:boolean = false;
+  isLogin:boolean = false;
+  public products:AddProductInterface[] = [
+  ];
+  
+
+  constructor(private authService:AuthService,private productService:ProductService){
+    this.loggedinHandle();
+  }
+  ngOnInit(): void {
+    this.productService.fetchProduct().subscribe((data)=>{
+      this.productService.products = data;
+      this.products = this.productService.products;
+      // this.products = data;
+      console.log('sasasasasas',this.productService.products);
+      
+    });
+  }
+  loggedinHandle(event:boolean = true){
+    this.isLogin = this.authService.isLoggedIn();
+    console.log("wellocome",this.isLogin);
+
+  }
+  
+  toggelToRegister(event:boolean){
+    this.isRegisterView = event
+  }
 }
