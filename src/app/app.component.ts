@@ -22,10 +22,15 @@ export class AppComponent implements OnInit{
     this.productService.fetchProduct().subscribe((data)=>{
       this.productService.products = data;
       this.products = this.productService.products;
+      // this.products = data;
+      console.log('sasasasasas',this.productService.products);
+      
     });
   }
   loggedinHandle(event:boolean = true){
     this.isLogin = this.authService.isLoggedIn();
+    console.log("wellocome",this.isLogin);
+
   }
   
   toggelToRegister(event:boolean){

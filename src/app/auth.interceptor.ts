@@ -19,8 +19,8 @@ export class AuthInterceptor implements HttpInterceptor {
     
     if (idToken) {
         const cloned = request.clone({
-                params: (request.params ? request.params : new HttpParams())
-                 .set('auth', idToken)
+          params: (request.params ? request.params : new HttpParams())
+          .set('auth', idToken)
         });
 
         return next.handle(cloned);

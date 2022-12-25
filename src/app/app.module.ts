@@ -1,4 +1,4 @@
-import { NgModule, isDevMode } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -13,7 +13,6 @@ import { SignupComponent } from './login/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddProductComponent } from './add-product/add-product.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthHttpInterceptorProviders } from './auth.interceptor';
 
 @NgModule({
@@ -33,13 +32,7 @@ import { AuthHttpInterceptorProviders } from './auth.interceptor';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+    HttpClientModule
   ],
   providers: [AuthHttpInterceptorProviders],
   bootstrap: [AppComponent]
