@@ -61,8 +61,6 @@ export class AddProductComponent implements OnInit,AfterViewInit {
 
   onAddProduct():void {
     const productForm = this.productForm.value;
-    console.log();
-    
       const formValue = { name: productForm.name, image: productForm.image, price: productForm.price,color: productForm.color,offerPrice: productForm.offerPrice }
       this.formBtnStr = 'Please Wait'; 
       this.productService.addProduct(formValue,this.productId).subscribe((data)=>{

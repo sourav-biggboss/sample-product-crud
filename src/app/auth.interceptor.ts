@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpParams, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {
   HttpRequest,
@@ -19,8 +19,8 @@ export class AuthInterceptor implements HttpInterceptor {
     
     if (idToken) {
         const cloned = request.clone({
-            headers: request.headers.set("Authorization",
-                "Bearer " + idToken)
+                params: (request.params ? request.params : new HttpParams())
+                 .set('auth', idToken)
         });
 
         return next.handle(cloned);

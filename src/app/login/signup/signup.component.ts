@@ -32,11 +32,9 @@ export class SignupComponent implements OnInit {
         (data) => {
           this.FormErr = false;
             this.successSignup = true;
-            console.log(data);
         },
         (err) => {
           this.LoginFormBtnStr = 'SignUp';
-          console.log(err);
           this.successSignup = false;
           
           this.FormErrMessage = err.error.message;
