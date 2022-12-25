@@ -1,16 +1,17 @@
+<app-loader></app-loader>
 <app-nav [appName]="title"></app-nav>
 <br>
 <div class="container">
     <div class="row">
-        <div class="col-8" *ngIf="products && products.length > 0">
+        <div class="col-sm-8" *ngIf="products && products.length > 0">
             <app-product-list *ngFor="let product of products" [product]="product"></app-product-list>
         </div>
-        <div class="col-8" *ngIf="!products || products.length == 0">
+        <div class="col-sm-8" *ngIf="!products || products.length == 0">
             <div class="card">
                 <h4 class="alert text-danger m-0">No Product Found</h4>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-sm-4">
             <app-add-product  *ngIf="isLogin; else registerLogin"></app-add-product>
             <ng-template #registerLogin>
                 <app-login *ngIf="!isRegisterView" (loggedin)="loggedinHandle(true)" (isRegisterView)="toggelToRegister($event)" ></app-login>
@@ -19,3 +20,5 @@
         </div>
     </div>
 </div>
+
+<app-footer></app-footer>

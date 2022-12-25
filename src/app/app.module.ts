@@ -14,12 +14,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AddProductComponent } from './add-product/add-product.component';
 import { AuthHttpInterceptorProviders } from './auth.interceptor';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     NavComponent,
+    LoaderComponent,
     ErrorPageComponent,
     FooterComponent,
     ToastInlineComponent,

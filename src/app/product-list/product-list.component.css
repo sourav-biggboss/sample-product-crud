@@ -15,3 +15,11 @@
   width: 17vw;
   height: 16em;
 }
+@media only screen and (max-width: 600px) {
+  .card-contait{
+      flex-direction: column!important;
+  }
+  .card-contait img{
+    width: 100%!important;
+  }
+}

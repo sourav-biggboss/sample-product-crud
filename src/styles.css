@@ -8,3 +8,17 @@
 input.ng-dirty.ng-invalid {
     border: 1px #dc3545 solid!important;
 }
+/* repsonsive */
+@media only screen and (max-width: 600px) {
+    nav{
+        display: flex;
+        justify-content: center!important;
+        align-items: center!important;
+    }
+    .col-sm-4{
+        margin-top: 20px!important;
+    }
+    .card mb-6{
+        flex-direction: column!important;
+    }
+}
