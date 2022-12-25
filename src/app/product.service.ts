@@ -12,10 +12,48 @@ export class ProductService {
   public products:AddProductInterface[] = [
   ];
   editDetails = new Subject<AddProductInterface>();
+  tooAdd = new Subject<boolean>();
   constructor(private http: HttpClient,private loaderService:LoaderService,private toastService:ToastService) {
    }
 
   addProduct(formData:AddProductFrom,id?:string){
+    const productFormUpload = formData;
+    let updatedForm = new Subject();
+    if  (productFormUpload.image instanceof  File) {      
+      const formDataUpload = new FormData();
+      formDataUpload.append('image', productFormUpload.image??'');
+      let fileName = productFormUpload.image.name.split('.');
+      let randam = (Math.random() * 1000000) + 1;
+      this.http.post<FirebaseStorageToken>('https://firebasestorage.googleapis.com/v0/b/sample-product-crud.appspot.com/o/'+fileName[0]+randam+'.'+fileName.slice(-1)[0], formDataUpload)
+      .subscribe(res => {
+        formData.image = 'https://firebasestorage.googleapis.com/v0/b/'+res.bucket+'/o/'+res.name+'?alt=media&token='+res.downloadTokens;   
+        this.addProductForm(formData,id).subscribe((data:any)=>{
+          updatedForm.next(true)
+        },(err)=>{
+          updatedForm.error(true);
+        });
+      },(err)=>{
+        this.addProductForm(formData,id).subscribe((data:any)=>{
+          updatedForm.error(true);
+        },(err)=>{
+          updatedForm.error(true);
+        });
+      });
+    } else {
+      for (let index = 0; index < this.products.length; index++) {
+        formData.image = (typeof this.products[index].image  ==  "string") ? this.products[index].image : '/assets/food-photography.jpg'
+      }
+      this.addProductForm(formData,id).subscribe((data:any)=>{
+        updatedForm.next(true)
+      },(err)=>{
+        updatedForm.error(true);
+      });
+    }
+
+    return updatedForm
+  }
+
+  addProductForm(formData:AddProductFrom,id?:string){
     this.loaderService.loader.next(true);
     let ApiUpdateAddProductUrl;
     if (id) {
@@ -28,10 +66,10 @@ export class ProductService {
             if (this.products[index].id == id) {
               this.products[index] = {
                 name:formData.name ?? '',
-                image:formData.image ?? '',
+                image: (typeof formData.image  ==  "string") ? formData.image : '/assets/food-photography.jpg',
                 offerPrice:Number.parseInt(formData.offerPrice?? '0'),
                 price:Number.parseInt(formData.price??'0'),
-                id:userData.name,
+                id:id,
                 color:formData.color??''
               }
             }
@@ -53,7 +91,7 @@ export class ProductService {
             this.loaderService.loader.next(false);
             this.products.push({
               name:formData.name ?? '',
-              image:formData.image ?? '',
+              image: (typeof formData.image  ==  "string") ? formData.image : '/assets/food-photography.jpg',
               offerPrice:Number.parseInt(formData.offerPrice?? '0'),
               price:Number.parseInt(formData.price??'0'),
               id:userData.name,
@@ -69,7 +107,26 @@ export class ProductService {
       ));
     }
   }
-
+  deleteProductImage(id:string){
+    this.loaderService.loader.next(true);
+    let url = 'https://firebasestorage.googleapis.com/v0/b/sample-product-crud.appspot.com/o';
+    for (let index = 0; index < this.products.length; index++) {
+      if (this.products[index].id == id) {
+        url = this.products[index].image;
+      }
+    }
+    return this.http.delete<FirebaseStorageToken>(url).pipe(tap(
+        (userData) => {
+          this.loaderService.loader.next(false);
+        },
+        (err)=>{
+          this.loaderService.loader.next(false);
+        },
+        ()=>{
+          this.loaderService.loader.next(false);
+        }
+    ));
+  }
   fetchProduct(){
     this.loaderService.loader.next(true);
     return this.http.get(environment.apiUrl+'products.json')
@@ -98,7 +155,9 @@ export class ProductService {
       )));
   }
   delete(id:string){
+    this.tooAdd.next(true);
     this.loaderService.loader.next(true);
+    this.deleteProductImage(id).subscribe();
     return this.http.delete<{name:string}>(environment.apiUrl+'products/'+id+'.json')
         .pipe(tap(
           (userData) => {
@@ -130,5 +189,22 @@ export class ProductService {
   }
 }
 
-export interface AddProductFrom { name: string|undefined|null ; image: string|undefined|null  ; price: string|undefined|null  ; offerPrice?: string|undefined|null  | null; color: string|undefined|null  ; }
+export interface AddProductFrom { name: string|undefined|null ; image: File|string|null|undefined  ; price: string|undefined|null  ; offerPrice?: string|undefined|null  | null; color: string|undefined|null  ; }
 export interface AddProductInterface { id:string;name: string ; image: string; price: number  ; offerPrice?: number  | null; color: string  ; }
+export interface FirebaseStorageToken {   
+  name: string
+  bucket: string
+  generation: string
+  metageneration: string
+  contentType: string
+  timeCreated: string
+  updated: string
+  storageClass: string
+  size: string
+  md5Hash: string
+  contentEncoding: string
+  contentDisposition: string
+  crc32c: string
+  etag: string
+  downloadTokens: string
+}

@@ -56,29 +56,10 @@ export class AuthService {
 
   logout() {
     this.loaderService.loader.next(true);
-    return this.http.post("https://securetoken.googleapis.com/v1/token?key="+environment.fireBaseKey,{}).pipe(tap(
-      (userData) => {
-        this.loaderService.loader.next(false);
-      },
-      (err)=>{
-        this.loaderService.loader.next(false);
-      },
-      ()=>{
-        this.loaderService.loader.next(false);
-      }
-    )).subscribe(()=>{
-      localStorage.removeItem("token");
-      window.sessionStorage.removeItem(USER_KEY);
-      this.router.navigateByUrl('/auth');
-    },()=>{
-      localStorage.removeItem("token");
-      window.sessionStorage.removeItem(USER_KEY);
-      this.router.navigateByUrl('/auth');
-    },()=>{
-      localStorage.removeItem("token");
-      window.sessionStorage.removeItem(USER_KEY);
-      this.router.navigateByUrl('/auth');
-    })
+
+    localStorage.removeItem("token");
+    window.sessionStorage.removeItem(USER_KEY);
+    this.router.navigateByUrl('/');
   }
 
   public isLoggedIn() {

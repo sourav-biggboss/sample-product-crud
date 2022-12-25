@@ -13,8 +13,8 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="">Image <span class="text-danger">*</span></label>
-          <input type="file" class="form-control" id="" name="image"  formControlName="image" required placeholder="Product Image">
+          <label for="">Image <span class="text-danger" *ngIf="productId ==undefined">*</span></label>
+          <input type="file" (change)="onFileChange($event)" class="form-control" id="" name="image" value="" formControlName="image" placeholder="Product Image">
           <div *ngIf="productForm.controls.image.invalid && (productForm.controls.image.dirty || productForm.controls.image.touched)" class="text-danger">
             <div *ngIf="productForm.controls.image.errors?.['required']">
               Image is required.

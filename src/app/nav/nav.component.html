@@ -9,4 +9,12 @@
             </b>
       </span>
     </a>
+
+    <a *ngIf="isLogin()" class="navbar-brand btn btn-light" (click)="logout()">
+        <span class="text-uppercase font-weight-bold">
+            <b>
+                {{'Logout' | uppercase}} 
+            </b>
+      </span>
+    </a>
 </nav>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -43,7 +44,7 @@ export class NavComponent implements OnInit {
    */
    @Input() public navToggle:boolean = false;
 
-  constructor() { }
+  constructor(private AuthService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -53,6 +54,15 @@ export class NavComponent implements OnInit {
    */
   toggleNavigation():void{
     this.navToggle = !this.navToggle; 
+  }
+
+  logout(){
+    this.AuthService.logout();
+    window.location.reload();
+  }
+
+  isLogin(){
+    return this.AuthService.isLoggedIn();
   }
 
   /**
