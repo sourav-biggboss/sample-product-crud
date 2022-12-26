@@ -41,7 +41,7 @@
 
   <div class="form-group">
       <label for="">Color <span class="text-danger">*</span></label>
-      <select class="form-control" id="" name="color" formControlName="color" required placeholder="Product Color">
+      <select class="form-control" id="" name="color" formControlName="color" required placeholder="Product Color" multiple>
         <option value disabled>Select</option>
         <option value="red">Red</option>
         <option value="yellow">Yellow</option>
@@ -55,6 +55,6 @@
       </div>
   </div>
     
-  <button type="submit" [disabled]="productForm.invalid && (productForm.dirty || productForm.touched)"  class="btn mt-2 btn-dark">{{ formBtnStr }}</button>
+  <button type="submit" [disabled]="(productForm.invalid) || productForm.value.color?.length == undefined || productForm.value.color?.length == 0 || productForm.value.color == ['']"  class="btn mt-2 btn-dark">{{ formBtnStr }}</button>
   <button type="button" *ngIf="productId !=undefined" (click)="toggleAdd()" class="btn mt-2 btn-light">Add New Product</button>
 </form>

@@ -2,10 +2,13 @@
     <img [src]="product?.image ?? '/assets/food-photography.jpg'" class="card-img-top" [alt]="product?.name">
     <div class="card-body">
         <h5 class="card-title">{{product?.name ?? 'N/A'}}</h5>
-        <div class="card-text d-block"><b>Color: </b>
-            {{product?.color ?? 'N/A' | titlecase}}
-            <div style="height: 20px;width: 20px; display: inline-block;margin-bottom: -5px;" [style.backgroundColor]="product?.color">
-            </div>
+        <div *ngIf="product?.color?.length != undefined && product?.color?.length != 0" class="card-text d-block">
+            <b>Color: </b>
+            <span *ngFor="let color of product?.color">
+                {{color ?? 'N/A' | titlecase}}
+                <div style="height: 20px;width: 20px; display: inline-block;margin-bottom: -5px;" [style.backgroundColor]="color">
+                </div>
+            </span>
         </div>
         <small>
             <span><strong>Price:</strong>{{product?.price ?? 'N/A'}} ₹ </span>

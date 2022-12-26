@@ -79,7 +79,7 @@ export class ProductService {
                 offerPrice:Number.parseInt(formData.offerPrice?? '0'),
                 price:Number.parseInt(formData.price??'0'),
                 id:id,
-                color:formData.color??''
+                color:formData.color??[]
               }
             }
           }
@@ -106,7 +106,7 @@ export class ProductService {
               offerPrice:Number.parseInt(formData.offerPrice?? '0'),
               price:Number.parseInt(formData.price??'0'),
               id:userData.name,
-              color:formData.color??''
+              color:formData.color??[]
             });
             this.toastService.showSuccess('Form Submitted Successfully');
           },
@@ -230,9 +230,9 @@ export class ProductService {
   }
 }
 
-export interface AddProductFrom { name: string|undefined|null ; image: File|string|null|undefined  ; price: string|undefined|null  ; offerPrice?: string|undefined|null  | null; color: string|undefined|null  ; }
+export interface AddProductFrom { name: string|undefined|null ; image: File|string|null|undefined  ; price: string|undefined|null  ; offerPrice?: string|undefined|null  | null; color: string[]|undefined|null  ; }
 
-export interface AddProductInterface { id:string;name: string ; image: string; price: number  ; offerPrice?: number  | null; color: string  ; }
+export interface AddProductInterface { id:string;name: string ; image: string; price: number  ; offerPrice?: number  | null; color: string[]  ; }
 export interface FirebaseStorageToken {   
   name: string
   bucket: string

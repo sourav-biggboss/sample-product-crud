@@ -20,7 +20,7 @@ export class AddProductComponent implements OnInit,AfterViewInit {
     image: new FormControl<File|string|null|undefined>(null,Validators.required),
     price: new FormControl('',Validators.required),
     offerPrice: new FormControl(''),
-    color: new FormControl('',Validators.required),
+    color: new FormControl<string[]>([''],Validators.required),
   });
   
   constructor(private productService:ProductService) { }
@@ -79,6 +79,8 @@ export class AddProductComponent implements OnInit,AfterViewInit {
    */
   onAddProduct():void {
     const productForm = this.productForm.value;
+    console.log(productForm);
+    
     const formValue = { name: productForm.name, image: productForm.image, price: productForm.price,color: productForm.color,offerPrice: productForm.offerPrice }
     this.formBtnStr = 'Please Wait'; 
     this.productService.addProduct(formValue,this.productId).subscribe((data)=>{
