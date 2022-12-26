@@ -8,14 +8,9 @@
       "resources": {
         "files": [
           "/favicon.ico",
-          "/index.html",
-          "/",
           "/manifest.webmanifest",
           "/*.css",
           "/*.js"
-        ],
-        "urls" : [
-          "https://firebasestorage.googleapis.com/v0/b/sample-product-crud.appspot.com/**"
         ]
       }
     },
@@ -34,7 +29,7 @@
   "dataGroups": [
     {
       "name": "tasks-api",
-      "urls": ["https://sample-product-crud-default-rtdb.firebaseio.com/**"],
+      "urls": ["https://sample-product-crud-default-rtdb.firebaseio.com/**", "https://firebasestorage.googleapis.com/v0/b/sample-product-crud.appspot.com/**"],
       "cacheConfig": {
         "strategy": "freshness",
         "maxSize": 20,
