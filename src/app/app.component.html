@@ -1,9 +1,16 @@
+<!-- app loader -->
 <app-loader></app-loader>
+<!-- toast -->
+<app-toast-inline></app-toast-inline>
+<!-- app nav -->
 <app-nav [appName]="title"></app-nav>
 <br>
+
+<!-- app contains -->
 <div class="container">
     <div class="row">
         <div class="col-sm-8" *ngIf="products && products.length > 0">
+            <!-- app product lists -->
             <app-product-list *ngFor="let product of products" [product]="product"></app-product-list>
         </div>
         <div class="col-sm-8" *ngIf="!products || products.length == 0">
@@ -12,7 +19,9 @@
             </div>
         </div>
         <div class="col-sm-4">
+            <!-- app - add / update product -->
             <app-add-product  *ngIf="isLogin; else registerLogin"></app-add-product>
+            <!-- app - login / register user auth -->
             <ng-template #registerLogin>
                 <app-login *ngIf="!isRegisterView" (loggedin)="loggedinHandle(true)" (isRegisterView)="toggelToRegister($event)" ></app-login>
                 <app-signup *ngIf="isRegisterView"  (isLoginView)="toggelToRegister(!$event)" ></app-signup>
@@ -21,4 +30,5 @@
     </div>
 </div>
 
+<!-- app footer -->
 <app-footer></app-footer>

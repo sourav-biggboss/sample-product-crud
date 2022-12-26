@@ -56,11 +56,21 @@ export class NavComponent implements OnInit {
     this.navToggle = !this.navToggle; 
   }
 
+  /**
+   * "The logout function is called when the user clicks the logout button, which calls the logout
+   * function in the AuthService, which clears the token from local storage, and then reloads the
+   * page."
+   * </code>
+   */
   logout(){
     this.AuthService.logout();
     window.location.reload();
   }
 
+  /**
+   * If the user is logged in, return true, otherwise return false.
+   * @returns The return value of the function isLoggedIn()
+   */
   isLogin(){
     return this.AuthService.isLoggedIn();
   }
@@ -68,7 +78,7 @@ export class NavComponent implements OnInit {
   /**
    * Close nav side
    */
-   closeNavigation():void{
+  closeNavigation():void{
     this.navToggle = false; 
   }
 

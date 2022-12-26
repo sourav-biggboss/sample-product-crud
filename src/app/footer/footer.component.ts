@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class FooterComponent implements OnInit {
 
   /**
-   * componet name
+   * component name
    * @var componentName
    */
   componentName:string = 'Copyright'; // footer

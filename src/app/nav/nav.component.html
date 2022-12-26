@@ -1,20 +1,9 @@
 <nav class="navbar navbar-light bg-light px-3">
-    
-    <a class="navbar-brand" [title]="appName | titlecase">
-        <!-- app logo nav -->
+    <a class="navbar-brand" href="/" [title]="appName | titlecase">
       <img [src]="logoSrc" [width]="logoWidth" [height]="logoHeight" class="d-inline-block align-top" [alt]="appName | titlecase">
-      <span class="text-uppercase font-weight-bold">
-            <b>
-                {{appName | uppercase}} 
-            </b>
-      </span>
+      <span class="text-uppercase font-weight-bold"><b>{{appName | uppercase}}</b></span>
     </a>
-
     <a *ngIf="isLogin()" class="navbar-brand btn btn-light" (click)="logout()">
-        <span class="text-uppercase font-weight-bold">
-            <b>
-                {{'Logout' | uppercase}} 
-            </b>
-      </span>
+        <span class="text-uppercase font-weight-bold"><b>{{'Logout' | uppercase}}</b></span>
     </a>
 </nav>

@@ -9,22 +9,26 @@ import { AuthService } from 'src/app/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+
   FormErr:boolean = false;
   FormErrMessage:any = undefined;
   LoginFormBtnStr = 'SignUp';
   successSignup = false;
   @Output() isLoginView = new EventEmitter<boolean>();
-
   signupForm = new FormGroup({
     name: new FormControl('',[Validators.required]),
     email: new FormControl('',[Validators.required,Validators.email]),
     password: new FormControl('',[Validators.required])
   })
+
   constructor(private authService:AuthService,private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  /**
+   * It takes the values from the form and sends them to the server.
+   */
   onSignUp():void{
     const val = this.signupForm.value;
     if (val.name && val.password && val.email) {
@@ -46,7 +50,10 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  toLogInView(){
+  /**
+   * This function emits a boolean value of true to the parent component.
+   */
+  toLogInView():void{
     this.isLoginView.emit(true);
   }
     

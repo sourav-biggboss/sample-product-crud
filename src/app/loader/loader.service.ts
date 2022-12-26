@@ -5,10 +5,15 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class LoaderService {
-
-  constructor() { }
+  
   public loader = new BehaviorSubject<boolean>(false);
 
+  constructor() { }
+
+  /**
+   * It takes a boolean value and sets the loader to that value
+   * @param {boolean} status - boolean - true or false
+   */
   public loaderStatus(status:boolean):void{
     this.loader.next(status);
   }

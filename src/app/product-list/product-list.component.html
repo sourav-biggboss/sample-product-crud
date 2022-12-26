@@ -8,15 +8,12 @@
             </div>
         </div>
         <small>
-            <span>
-                <strong>Price:</strong>
-                {{product?.price ?? 'N/A'}}₹
-            </span> - 
-            <em><b>Discount</b>: {{product?.offerPrice ?? 'N/A'}}₹</em>
+            <span><strong>Price:</strong>{{product?.price ?? 'N/A'}} ₹ </span> - 
+            <em><b>Discount</b>: {{product?.offerPrice ?? 'N/A'}} ₹</em>
         </small>
         <br>
         <div class="mb-3 text-success" style="font-size: 20px;">
-            <span><b>Total:</b> </span>{{this.productService.discountSub(product?.price,product?.offerPrice)}}₹
+            <span><b>Total:</b> </span>{{this.productService.discountSub(product?.price,product?.offerPrice)}} ₹
         </div>
         <a (click)="update()"  *ngIf="isLogin()" class="btn btn-light">Update / Edit</a>
         <a (click)="delete()" *ngIf="isLogin()"  class="btn btn-danger">{{deleteText | titlecase}}</a>

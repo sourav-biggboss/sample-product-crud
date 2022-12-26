@@ -15,6 +15,8 @@
   width: 17vw;
   height: 16em;
 }
+
+/* for small screen */
 @media only screen and (max-width: 600px) {
   .card-contait{
       flex-direction: column!important;

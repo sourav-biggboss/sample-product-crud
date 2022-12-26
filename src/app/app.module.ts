@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ProductListComponent } from './product-list/product-list.component';
 import { NavComponent } from './nav/nav.component';
-import { ErrorPageComponent } from './error-page/error-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { ToastInlineComponent } from './toast-inline/toast-inline.component';
 import { LoginComponent } from './login/login/login.component';
@@ -22,7 +21,6 @@ import { LoaderComponent } from './loader/loader.component';
     ProductListComponent,
     NavComponent,
     LoaderComponent,
-    ErrorPageComponent,
     FooterComponent,
     ToastInlineComponent,
     LoginComponent,
