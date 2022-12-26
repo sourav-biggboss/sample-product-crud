@@ -8,8 +8,8 @@
             </div>
         </div>
         <small>
-            <span><strong>Price:</strong>{{product?.price ?? 'N/A'}} ₹ </span> - 
-            <em><b>Discount</b>: {{product?.offerPrice ?? 'N/A'}} ₹</em>
+            <span><strong>Price:</strong>{{product?.price ?? 'N/A'}} ₹ </span>
+            <em *ngIf="product?.offerPrice"> - <b>Discount</b>: {{product?.offerPrice ?? 'N/A'}} ₹</em>
         </small>
         <br>
         <div class="mb-3 text-success" style="font-size: 20px;">
