@@ -1,7 +1,7 @@
-# Sample Product Crud
+# Sample Product CRUD
 
 This project was generated with Angular CLI version 14.1.0. And Firebase for hosting and real time database.
-this is sample CRUD opreation with authantication 
+this is sample Create Read Update Delete opreation with authantication 
 
 ## Software Feature
 
