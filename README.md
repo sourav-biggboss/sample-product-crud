@@ -7,10 +7,10 @@ this is sample Create Read Update Delete opreation with authantication
 
 Fields for adding the product fields are mentioned here (Name, Image, Price, Offer Price, colors). 
 
-1.Colors should be multiple and text filed.
-2. DB use Firebase.
-3. Also depoly the project on Firebase and share the link. 
-4. The site should be PWA features Enabled.
+- Colors should be multiple and text filed.
+- DB use Firebase.
+- Also depoly the project on Firebase and share the link. 
+- The site should be PWA features Enabled.
 
 Users can Add Products, Edit products, and Delete Products after Sign Up and log in. 
 
