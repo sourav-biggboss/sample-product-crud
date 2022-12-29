@@ -26,5 +26,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 ## Deployment (CLI)
 
 1.Install the Firebase CLI using npm
+
 2.firebase init hosting
+
 3.firebase deploy
