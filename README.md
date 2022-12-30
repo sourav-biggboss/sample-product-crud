@@ -3,6 +3,10 @@
 This project was generated with Angular CLI version 14.1.0. And Firebase for hosting and real time database.
 this is sample Create Read Update Delete opreation with authantication 
 
+## live Demo
+
+- https://sample-product-crud.web.app/
+
 ## Software Feature
 
 Fields for adding the product fields are mentioned here (Name, Image, Price, Offer Price, colors). 
